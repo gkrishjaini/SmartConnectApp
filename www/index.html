@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">   <meta name="format-detection" content="telephone=no"> -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components"
+	/>
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/font.css" type="text/css" />
+	<link rel="stylesheet" href="css/app.css" type="text/css" />
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+
+	<!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+
+	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> 
+        <title>Hello World</title> -->
+</head>
+
+<body ng-app="smartApp">
+
+	<div ui-view style="height:100%">
+
+	</div>
+
+	<!-- template start -->
+
+
+	<!-- template End -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script type="text/javascript" src="js/ng-cordova.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="js/angular-messages.js"></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controllers/baseCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/login/loginCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/registration/registrationCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/login/otpVerificationCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/login/forgotPasswordCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/login/resetPasswordCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/home/homeCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/customerScheduler/customerSchedulerCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/customerProfile/customerProfileCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/closing/closingCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/search/searchCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/searchSP/searchSPCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/appointmentScheduleCustomerCtrl/appointmentScheduleCustomerCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/appointmentStatus/appointmentStatusCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/appointmentStatus/upcomingAppointmentCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/appointmentStatus/todaysAppointmentCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/appointmentStatus/previousAppointmentCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/employeesAppointment/employeesAppointmentCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/pendingList/pendingListCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/pendingList/upcomingAppointmentListCtrl.js"></script>
+	<script type="text/javascript" src="js/services/searchService.js"></script>
+
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+	<!-- link of scripts -->
+	<script src="js/themejs/jquery.js"></script>
+	<script src="js/themejs/bootstrap.js"></script>
+	<script src="js/themejs/ui-load.js"></script>
+	<script src="js/themejs/ui-jp.config.js"></script>
+	<script src="js/themejs/ui-jp.js"></script>
+	<script src="js/themejs/ui-nav.js"></script>
+	<script src="js/themejs/ui-toggle.js"></script>
+	<script src="js/themejs/ui-client.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="js/underscore.js"></script>
+	<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+	<script>
+    $(function(){
+      $('body').on('click','.navi a',function(){
+           $('.app-aside').toggleClass('off-screen');  
+      });
+    });
+  </script>
+</body>
+
+</html>

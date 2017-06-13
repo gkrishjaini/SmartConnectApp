@@ -1,0 +1,284 @@
+<div class="ap-schedule-panel-wrapper">
+	<div class="panel-body" ng-class="{ 'active' : section.section1 }">
+		<div class="navbar-brand block m-t">Search Customer</div>
+		<div class="list-group-item">
+			<input type="text" placeholder="Business Area" class="form-control no-border" ng-model="businessArea" name="businessArea">
+		</div><br>
+		<div class="list-group-item">
+			<input type="text" placeholder="Customer Name" class="form-control no-border" ng-model="customerName" name="spName">
+		</div><br>
+		<div class="list-group-item">
+			<input type="text" placeholder="ZIP Code" class="form-control no-border" ng-model="zipCode" name="zipCode">
+		</div><br>
+		<div class="list-group-item">
+			<input type="text" placeholder="Contact Number" class="form-control no-border" ng-model="contactNumber" name="contactNumber">
+		</div><br>
+		<div class="button-weapper">
+			<button type="submit" class="btn btn-info" style="width:100px" ng-click="search()">Search</button>
+		</div>
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section2 }">
+		<form name="selectCustomerform" class="form-validation">
+			<div class="text-danger wrapper text-center" ng-show="authError"></div>
+			<div class="list-group list-group-sm">
+				<div class="list-group">
+					<a class="list-group-item active">
+						<h4 class="list-group-item-heading"><i class="fa fa-search">  Select Customer</i></h4>
+						<!--<p class="list-group-item-text">List Group Item Text</p>-->
+					</a>
+					<a class="list-group-item" ng-repeat="item in searchCustomer" ng-click="getAppointmentType(item)" ng-class="{ activeItemSP: item._id == selectedCSItem }">
+						<!--<h4 class="list-group-item-heading">Second List Group Item Heading</h4>-->
+						<p class="list-group-item-text">{{item.firstName}} ({{item.zipCode}})
+							<!--<div ng-init="rating = item.rating"></div>
+							<div class="star-rating" star-rating rating-value="rating" rating-disabled="true" data-max="5"></div>-->
+						</p>
+					</a>
+				</div>
+
+				<div class="button-weapper">
+					<button type="button" class="btn btn-info" style="width:100px;" ng-click="section = {section1: true};">Back</button>
+					<button type="button" class="btn btn-info pull-right" ng-disabled="!customer" style="width:100px;" ng-click="step2()">Next</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section3}">
+		<div class="navbar-brand block m-t">Choose Appointment</div>
+		<select class="form-control no-border" ng-model="selectedAppointmentType" ng-change=getAppointmentCategory()> 
+            <option value="" selected>--Select Appointment Type--</option>
+            <option value="{{item.appointmentType}}" ng-repeat="item in listAppointmentType">{{item.appointmentType}}</option>
+            </select>
+		<br>
+		<select class="form-control no-border" ng-model="selectedAppointmentCategory" ng-change=getAppointmentSubCategory()> 
+            <option value="" selected>--Select Appointment Category--</option>
+            <option value="{{item.appointmentCategory}}" ng-repeat="item in listAppointmentCategory">{{item.appointmentCategory}}</option>
+            </select>
+		<br>
+		<select class="form-control no-border" ng-model="selectedAppointmentSubCategory" ng-change=getAppointmentName()> 
+            <option value="" selected>--Select Appointment Sub Category--</option>
+            <option value="{{item.appointmentSubCategory}}" ng-repeat="item in listAppointmentSubCategory">{{item.appointmentSubCategory}}</option>
+            </select>
+		<br>
+		<select class="form-control no-border" ng-model="selectedAppointmentName" ng-change=getAppointmentId()> 
+            <option value="" selected>--Select Appointment--</option>
+            <option value="{{item.appointmentName}}" ng-repeat="item in listAppointmentName">{{item.appointmentName}}</option>
+            </select>
+		<br>
+
+		<div class="button-weapper">
+			<button type="button" class="btn btn-info" style="width:100px" ng-click="section = {section2: true};">Back</button>
+			<button type="button" class="btn btn-info pull-right" style="width:100px" ng-click="getQuestions()" ng-show="AppointmentID">Next</button>
+		</div>
+
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section4}">
+		<form name="requirementsform" class="form-validation">
+			<div class="navbar-brand block m-t">Please answer the following Requirements</div>
+			<div ng-repeat="item in questionList" ng-init="answer[$index].question = item.question">
+				<p><b>{{item.question}}</b></p>
+				<textarea class="form-control" rows="3" ng-model="answer[$index].answer" ng-required="item.required"></textarea><br>
+				<span style="color:red" ng-show="requirementsform.answer.$dirty">
+          <span ng-show = "requirementsform.answer.$dirty && requirementsform.answer.$error.required">Answer is required</span>
+				</span>
+			</div><br>
+
+			<div class="button-weapper">
+				<button type="button" class="btn btn-info" style="width:100px" ng-click="(serviceProviderAppointmentOption == 'Regular') ? section = {section3: true} : section = {section2: true};">Back</button>
+				<button type="submit" class="btn btn-info pull-right" style="width:100px" ng-click="step4()" ng-disabled='requirementsform.$invalid'>Next</button>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section5}">
+		<div class="navbar-brand block m-t">Appointment Time</div>
+		<form name="formAppointment" class="form-validation">
+			<div class="row">
+				<div class="col-sm-12">
+					<md-checkbox class="red" ng-model="AnyEmployeeSelected" ng-change="AnyEmployeeClicked()" ng-disabled="serviceProviderAppointmentOption == 'Default' || spotSelected"
+						ng-show="serviceProviderAppointmentOption != 'Default'">
+						Any Employees
+					</md-checkbox>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<select class="form-control no-border" ng-model="selectedEmployee" ng-change="getEmployeeID()" ng-disabled="AnyEmployeeSelected || serviceProviderAppointmentOption == 'Default'"
+						ng-show="serviceProviderAppointmentOption != 'Default'"> 
+            		<option value="" selected>--Select Employees--</option>
+            		<option value="{{item.employeeID}}" ng-repeat="item in employeesList">{{item.employeeName}}</option>
+          		</select>
+				</div>
+			</div>
+			</br>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<md-checkbox class="red" ng-model="spotSelected" ng-change="spotClicked()" ng-disabled="AnyEmployeeSelected" ng-show="spotFlag"
+						ng-show="serviceProviderAppointmentOption != 'Default'">
+						Walk in SPOT/Q
+					</md-checkbox>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<md-datepicker ng-model="AppointmentDate" ng-change="getAppointment()" md-placeholder="Appointment Date" md-min-date="AppointmentMinDate"
+						md-max-date="AppointmentMaxDate" ng-disabled="spotSelected" ng-hide='spotSelected' ng-show="serviceProviderAppointmentOption != 'Default'"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12" ng-show="spot">
+					<div ng-show="lastAppointmentDate">Last Appointment Details: {{lastAppointmentDate.appointmentTime}} ( {{lastAppointmentDate.customerName}} )</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<md-input-container class="md-block" flex-gt-sm ng-show="spot">
+						<div class="row">
+							<div class="col-md-6">
+								<input type="text" name="customTime" ng-pattern="/^((0?[1-9])|(1[0-2]))(((:|s)[0-5]+[0-9]+))$/" ng-model="customTime" placeholder="Start time"
+									required/>
+								<div class="col-md-6">
+									<button style="position: absolute; left: 200px;" ng-show="timeFormat == '12' && serviceProviderAppointmentOption != 'Default'"
+										ng-init="ampm='am'" ng-click="ampmClicked()" ng-model="ampm">{{ampm}}</button>
+								</div>
+								<div class="hint" ng-if="showHints">##:##</div>
+								
+								<span style="color:red" ng-show="formAppointment.customTime.$dirty">
+         					    <span ng-show = "formAppointment.customTime.$error.required">Working hours is required!</span>
+								<span ng-show="formAppointment.customTime.$error.pattern">Please provide a valid time!</span>
+								</span>
+							</div>
+						</div>
+					</md-input-container>
+				</div>
+			</div>
+		</form>
+		<div class="row" ng-show="appointmentSlotes">
+			<div class="col-sm-12">
+				<div class="panel">
+
+					</hr>
+					<div class="list-group">
+						<div ng-repeat="item in appointmentSlotes" class="text-center appointment-date-view-ites">
+							<div class="panel-heading">
+								<div>{{item.day.itemDate}}</div>
+								<div>{{item.day.day}}</div>
+								<div ng-show="!item.slots.length">
+									Not Available
+								</div>
+							</div>
+							<button class="list-group-item slot-item" ng-repeat="slote in item.slots" ng-class="{ 'booked': !slote.available,
+                                                      'available': (slote.available && slote.late == undefined), 
+                                                      'disabled' : (slote.type=='break'),
+													  'late' : (slote.late == true),
+                                                      'selected' : (slote == selectedSlote) }" ng-click="control.selectSlote(slote,item.day.itemDate)">
+                 <div>{{slote.time}}</div>
+                 <span ng-if="slote.type=='break'">Break</span>
+                 <span ng-if="slote.available && slote.late == undefined">Available</span>
+				 <span ng-if="slote.available == true && slote.late == true">Expired</span>
+                 <span ng-if="!slote.available && slote.type!='break'">Booked</span>
+               </button>
+						</div>
+					</div>
+				</div>
+				<div class="">
+					<button class="btn pull-left" ng-click="control.prev()">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+					<button class="btn pull-right" ng-click="control.next()">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+				</div>
+			</div>
+		</div>
+
+		<div class="button-weapper">
+			<div class="footer-button"> 
+				<button type="button" class="btn btn-info" style="width:100px" ng-click="(serviceProviderAppointmentOption == 'Regular') ? section = {section4: true} : section = {section4: true};">Back</button>
+				<button type="button" class="btn btn-info" style="width:100px; float:right; margin-right: 70px;" ng-click="control.showConfirmation()">Next</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section6 }">
+		<div class="list-group list-group-sm">
+			<div class="list-group">
+				<a href="" class="list-group-item active">
+					<h4 class="list-group-item-heading">Contact</h4>
+				</a>
+				<a href="" class="list-group-item">
+					<p><b>Company:</b> {{contactDetailList.companyName}}</p>
+					<p><b>Email:</b> {{contactDetailList.email}}</p>
+					<p><b>Phone Number:</b> {{contactDetailList.mobilePhone}}</p>
+					<p><b>Address:</b> {{contactDetailList.country+ ', ' +contactDetailList.zipCode}}</p>
+				</a>
+			</div>
+		</div>
+
+		<div class="button-weapper"><br>
+			<button type="button" class="btn btn-info" style="width:100px" ng-click="section = {section5: true};">Back</button>
+		</div>
+	</div>
+
+	<div class="panel-body" ng-class="{ 'active': section.section7 }">
+		<div class="row">
+			<div class="">
+				<div class="panel panel-default">
+					<div class="panel-heading text-center">
+						Confirm Appointment
+					</div>
+					<table class="table table-striped m-b-none">
+						<tbody ng-show="!spotSelected">
+							<tr ng-show="appointmentOption != 'Default'">
+								<td>
+									Appointment
+								</td>
+								<td>
+									{{selectedAppointmentName}}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Date
+								</td>
+								<td>
+									{{AppointmentDate | date:"MM/dd/yyyy"}} - {{selectedSlote.time}}
+								</td>
+							</tr>
+						</tbody>
+						<tbody ng-show="spotSelected">
+							<tr>
+								<td>
+									Date
+								</td>
+								<td>
+									{{dateAsString | date:"MM/dd/yyyy"}} - {{customTime}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="button-weapper">
+					<button type="button" class="btn btn-info" style="width:100px" ng-click="section = {section5: true};">Back</button>
+					<button type="button" class="btn btn-info pull-right" style="width:100px" ng-click="control.saveAppointment()">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div layout="row" class="content-loader row" layout-sm="column" ng-hide="CircularLoader" layout-align="space-around">
+		<div class="content-loader-inner-wrapper">
+			<md-progress-circular md-mode="indeterminate" ng-disabled="CircularLoader"></md-progress-circular>
+		</div>
+	</div>
+
+
+</div>

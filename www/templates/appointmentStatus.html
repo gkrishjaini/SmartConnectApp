@@ -1,0 +1,15 @@
+
+<div class="container w-xxl w-auto-xs">
+  <div class="navbar-brand block m-t">Appointment Status</div>
+  <div class="m-b-lg">
+    <form name="form" class="form-validation">
+      <div class="text-danger wrapper text-center" ng-show="authError">
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="text-center m-t m-b"> <button class="btn btn-lg btn-info btn-rounded" style="width:250px" ng-click="getTodaysAppointment()">Todays Appointment</button></div>
+        <div class="text-center m-t m-b"> <button class="btn btn-lg btn-info btn-rounded" style="width:250px" ng-click="getUpcomingAppointment()">Upcoming Appointment</button></div>
+        <div class="text-center m-t m-b"> <button class="btn btn-lg btn-info btn-rounded" style="width:250px" ng-click="getPreviousAppointment()">Closed Appointment</button></div>
+    </form>
+    </div>
+  </div>
+</div>

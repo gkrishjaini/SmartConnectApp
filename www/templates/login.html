@@ -1,0 +1,33 @@
+<div class="container w-xxl w-auto-xs">
+  <div class="navbar-brand block m-t">LOGIN</div>
+  <div class="m-b-lg">
+    <form name="form" class="form-validation">
+      <div class="text-danger wrapper text-center" ng-show="authError">
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="list-group-item">
+          <input type="text" placeholder="Email" name="email" class="form-control no-border" ng-model="email" required>
+        </div>
+        <span style="color:red" ng-show="form.email.$dirty && form.email.$invalid">
+          <span ng-show = "form.email.$error.required">Email is required</span>
+        <!-- <span ng-show = "form.email.$error.email">Invalid email address.</span> -->
+        </span><br>
+        <div class="list-group-item">
+          <input type="password" placeholder="Password" class="form-control no-border" ng-model="password" name="password" required>
+        </div>
+        <span style="color:red" ng-show="form.password.$dirty">
+          <span ng-show = "form.password.$error.required">Password is required</span>
+        </span><br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled='form.$invalid'>LOGIN</button>
+        <div class="text-center m-t m-b"><a href="#/forgotPassword">Forgot Password?</a></div>
+        <div class="text-center m-t m-b"> <a href="#/registration">Create Account</a></div>
+        <div class="line line-dashed"></div>
+    </form>
+    </div>
+    <div layout="row" class="content-loader row" layout-sm="column" ng-hide="CircularLoader" layout-align="space-around">
+      <div class="content-loader-inner-wrapper">
+        <md-progress-circular md-mode="indeterminate" ng-disabled="CircularLoader"></md-progress-circular>
+      </div>
+    </div>
+
+  </div>

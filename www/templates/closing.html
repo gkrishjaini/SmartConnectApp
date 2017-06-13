@@ -1,0 +1,122 @@
+<div class="ap-schedule-panel-wrapper">
+	<div class="container w-xxl w-auto-xs">
+		<!-- Section 1-->
+		<div class="panel-body" ng-class="{ 'active' : section.section1 }">
+			<div class="navbar-brand block m-t">Closing</div>
+			<div class="m-b-lg">
+				<form name="form" class="form-validation">
+					<div class="list-group list-group-sm">
+						<div>
+							<select class="form-control no-border" ng-model="selectedRegularAppointment" ng-options="item as item.appointmentTime + ' - ' + item.appRefNo for item in regular"
+								ng-change="getCustomerDetails(selectedRegularAppointment); selectedSpotAppointment= null;">
+							<option value="">-- Regular Appointment --</option>
+						</select>
+						</div><br>
+						<div>
+							<select class="form-control no-border" ng-model="selectedSpotAppointment" ng-options="item as item.appointmentTime + ' - ' + item.appRefNo for item in spot"
+								ng-change="getCustomerDetails(selectedSpotAppointment); selectedRegularAppointment=null;"> 
+            				<option value="" selected>-- Spot Appointment --</option>
+           			    </select>
+						</div><br>
+					</div>
+					<div class="button-weapper">
+						<button type="submit" class="btn btn-info" style="width:100px" ng-click="NextClick()">Next</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--Section 1 End-->
+
+		<!-- Section 2-->
+		<div class="panel-body" ng-class="{ 'active' : section.section2 }">
+			<div class="navbar-brand block m-t">Customer Details</div>
+			<div class="m-b-lg">
+				<form name="form" class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-2" for="Name"><b>Name:</b></label>
+						<div class="col-sm-10 col-xs-10">
+							<label for="Nametxt">{{CustomerDetails.firstName}} {{CustomerDetails.lastName}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-2" for="Mobile"><b>Mobile:</b></label>
+						<div class="col-sm-10 col-xs-10">
+							<label for="Mobiletxt">{{CustomerDetails.mobilePhone}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-2" for="Mobile"><b>Email:</b></label>
+						<div class="col-sm-10 col-xs-10">
+							<label for="Emailtxt">{{CustomerDetails.userName}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-2" for="Address"><b>Address:</b></label>
+						<div class="col-sm-10 col-xs-10">
+							<span ng-show="CustomerDetails.addressLane1!=null">
+							<label for="Addresstxt">{{CustomerDetails.addressLane1}}, {{CustomerDetails.addressLane2}}, {{CustomerDetails.city}}, {{CustomerDetails.country}}</label>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-2" for="ZipCode"><b>Zip Code:</b></label>
+						<div class="col-sm-10 col-xs-10">
+							<label for="ZipCodetxt">{{CustomerDetails.zipCode}}</label>
+						</div>
+					</div>
+					
+					<div class="button-weapper">
+						<button type="button" class="btn btn-info" style="width:100px;" ng-click="section = {section1: true};">Back</button>
+						<button type="button" class="btn btn-info pull-right" style="width:100px;" ng-click="NextClick2()">Next</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--section 2 End-->
+
+		<!--section 3-->
+		<div class="panel-body" ng-class="{ 'active' : section.section3 }">
+			<div class="navbar-brand block m-t"></div>
+			<div class="m-b-lg">
+				<form name="form" class="form-horizontal">
+					<div class="form-group">
+						<button id="addPicture">Upload Files</button>
+					</div>
+					<!-- images here -->
+					<div class="form-group">
+						<div id="images" class="img-responsive-uploaded-images">
+						</div>
+					</div>
+					<!--<button id="uploadPictures" disabled>Upload Pictures</button>-->
+
+					<!--<div class="form-group">
+					<button type="button" ng-click="displayGalleyFiles()">UPLOAD</button>
+				</div>-->
+					<!--<div class="form-group">
+						<label class="control-label col-sm-2" for="comment"><b>Comments: </b></label>
+						<div text-angular="text-angular" ng-model="comments" style="border: 1px solid #e1e1e1;" ta-toolbar="[['ul']]" name="htmlcontent1"
+							ng-model="ta.htmlcontent1" ta-text-editor-class="form-control myform1-height" ta-html-editor-class="form-control myform1-height"></div>
+					</div>-->
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="comment"><b>Comments: </b></label>
+						<div class="col-sm-10 col-xs-10">
+							<textarea class="form-control" rows="3" ng-model="comments"></textarea>
+						</div>
+					</div>
+					<div class="button-weapper">
+						<button type="button" class="btn btn-info" style="width:100px;" ng-click="section = {section2: true};">Back</button>
+						<button type="button" class="btn btn-info pull-right" style="width:100px;" id="uploadPictures" ng-disabled="!comments">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--section 3 End-->
+
+	</div>
+		<div layout="row" class="content-loader row" layout-sm="column" ng-hide="CircularLoader" layout-align="space-around">
+		<div class="content-loader-inner-wrapper">
+			<md-progress-circular md-mode="indeterminate" ng-disabled="CircularLoader"></md-progress-circular>
+		</div>
+	</div>
+
+</div>

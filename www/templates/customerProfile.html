@@ -1,0 +1,121 @@
+<div class="app app-header-fixed">
+<div class="container w-xxl w-auto-xs">
+  <div class="navbar-brand block m-t">Customer Profile</div>
+  <div class="m-b-lg">
+    <form name="form" class="form-validation">
+      <div class="text-danger wrapper text-center" ng-show="authError">    
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="list-group-item">
+          <input type="text" placeholder="First Name" class="form-control no-border" ng-model="customerProfile.firstName" name="firstName" disabled>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Last Name" class="form-control no-border" ng-model="customerProfile.lastName" name="lastName" disabled>
+        </div><br>
+        <div class="list-group-item">
+           <input type="email" placeholder="User Name(Email Address)" class="form-control no-border" ng-model="customerProfile.userName" name="userName" disabled>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Address1" class="form-control no-border" ng-model="addressLane2" name="addressLane2">
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Address2" class="form-control no-border" ng-model="address2" name="address2" disabled>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="City" class="form-control no-border" ng-model="city" name="city" required>
+        </div><br>
+        <span style = "color:red" ng-show = "form.city.$dirty">
+          <span ng-show = "form.city.$error.required">city is required</span>      
+        </span><br>
+          <div class="list-group-item">
+          <input type="text" placeholder="State" class="form-control no-border" ng-model="state" name="state" required>
+          </div><br>
+        <span style = "color:red" ng-show = "form.state.$dirty">
+          <span ng-show = "form.state.$error.required">state is required</span>      
+        </span><br>
+          <div class="list-group-item">
+          <input type="text" placeholder="Postal Code" class="form-control no-border" ng-model="customerProfile.zipCode" name="zipCode" >
+          </div><br>
+          <div class="list-group-item">
+          <!-- <input type="text" placeholder="Country" class="form-control no-border" ng-model="country" name="country" disabled> -->
+          <select name="singleSelect" id="singleSelect" ng-model="country">
+          <option value="option1" selected>USA</option>
+          <option value="option2">UK</option>
+          <option value="option2">India</option>
+          </select>
+        </div><br>
+        <div class="list-group-item">
+          <select name="singleSelect" id="singleSelect" ng-model="securityQuestion1">
+          <option value="option1" selected>Security Question A?</option>
+          <option value="option2">Security Question B?</option>
+          <option value="option2">Security Question C?</option>
+          <option value="option2">Security Question D?</option>
+          <option value="option2">Security Question E?</option>
+          </select>
+        </div><br>
+        <div class="list-group-item">
+           <input type="password" placeholder="*Answer1" class="form-control no-border" ng-model="answer1" name="answer1" >
+        </div><br>
+         <div class="list-group-item">
+          <select name="singleSelect" id="singleSelect" ng-model="securityQuestion2">
+          <option value="option1" selected>Security Question A?</option>
+          <option value="option2">Security Question B?</option>
+          <option value="option2">Security Question C?</option>
+          <option value="option2">Security Question D?</option>
+          <option value="option2">Security Question E?</option>
+          </select>
+        </div><br>
+        <div class="list-group-item">
+           <input type="password" placeholder="Answer2" class="form-control no-border" ng-model="answer2" name="answer2">
+        </div><br>
+        <div class="list-group-item">
+          <select name="singleSelect" id="singleSelect" ng-model="securityQuestion3">
+          <option value="option1" selected>Security Question A?</option>
+          <option value="option2">Security Question B?</option>
+          <option value="option2">Security Question C?</option>
+          <option value="option2">Security Question D?</option>
+          <option value="option2">Security Question E?</option>
+          </select>
+        </div><br>
+        <div class="list-group-item">
+           <input type="password" placeholder="Answer3" class="form-control no-border" ng-model="answer3" name="answer3">
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Current Mobile Number" class="form-control no-border" name="mobilePhone" ng-model="customerProfile.mobilePhone" required> 
+        </div><br>
+        <span style = "color:red" ng-show = "form.mobilePhone.$dirty">
+          <span ng-show = "form.mobilePhone.$error.required">Mobile Phone is required</span>      
+        </span><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Country Code" class="form-control no-border" ng-model="customerProfile.areaCode" disabled>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="New Mobile Number" class="form-control no-border" ng-model="newMobileNumber">
+        </div><br>
+        <div class="list-group-item">
+          *Areas of Interest<br>
+          <select name="singleSelect" id="singleSelect" ng-model="areasofinterest">
+          <option value="Music">Music</option>
+          </select>
+        </div><br>
+        Time Zone List 
+        <div class="list-group-item">                           
+         <input type="text" placeholder="*Time Zone" class="form-control no-border" ng-model="timeZone">
+        </div><br>
+        Time Format List 
+        <div>
+         <label class="switch">
+         <input type="checkbox">
+         <div class="slider round"></div>
+         </label>  
+        </div>
+      <button type="submit" ng-click="customerProfileSave()" ng-disabled='form.$invalid'>Submit</button> <button type="submit" ng-click="cancel()">Cancel</button> 
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+    
+  

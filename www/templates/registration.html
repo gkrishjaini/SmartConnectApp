@@ -1,0 +1,93 @@
+<div class="app app-header-fixed">
+<div class="container w-xxl w-auto-xs">
+  <div class="navbar-brand block m-t">Create Your Smart Connection Account</div>
+  <div class="m-b-lg">
+    <form name="form" class="form-validation">
+      <div class="text-danger wrapper text-center" ng-show="authError">    
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="list-group-item">
+          <input type="text" placeholder="*First Name" class="form-control no-border" ng-model="firstName" name="firstName" required>
+        </div>
+        <span style = "color:red" ng-show = "form.firstName.$dirty">
+          <span ng-show = "form.firstName.$error.required">First Name is required</span>      
+        </span><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="*Last Name" class="form-control no-border" ng-model="lastName" name="lastName" required>
+        </div>
+         <span style = "color:red" ng-show = "form.lastName.$dirty">
+          <span ng-show = "form.lastName.$error.required">Last Name is required</span>      
+        </span><br>
+        <div class="list-group-item">
+           <input type="email" placeholder="*User Name(Email Address)" class="form-control no-border" ng-model="userName" name="userName" required>
+        </div>
+        <span style = "color:red" ng-show = "form.userName.$dirty && form.userName.$invalid">
+          <span ng-show = "form.userName.$error.required">User Name is required</span>
+          <span ng-show = "form.userName.$error.email">Invalid email address.</span> 
+        </span><br>
+        <div class="list-group-item">
+           <input type="password" placeholder="*Password" class="form-control no-border" ng-model="password" name="password" ng-minlength="8" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" required>
+        </div>
+        <span style = "color:red" ng-show = "form.password.$dirty">
+          <span ng-show = "form.password.$error.required">Password is required</span>   
+          <span ng-show="form.password.$error.minlength">Password must be of length 8!</span><br>
+          <span ng-show="form.password.$error.pattern">Password should be alphanumeric with a special character!</span>
+        </span><br>
+        <div class="list-group-item">
+           <input type="password" placeholder="*Confirm Password" class="form-control no-border" ng-model="confirmpassword" name="confirmpassword" pw-check='password' required>
+        </div>
+        <span style = "color:red" ng-show = "form.confirmpassword.$dirty"> 
+         <span ng-show="password != confirmpassword">Mismatch</span>
+        </span><br>
+        <div class="list-group-item">
+          Gender
+          <select name="singleSelect" id="singleSelect" ng-model="gender">
+          <option value="" selected>-- Select --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          </select>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Area Code" class="form-control no-border" ng-model="areaCode"> 
+          </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Mobile Phone" class="form-control no-border" ng-model="mobilePhone">
+        </div><br>
+        <!--<div class="list-group-item">
+          <input type="email" placeholder="*Email Address" class="form-control no-border" ng-model="email" name="email" required>
+        </div>
+        <span style = "color:red" ng-show = "form.email.$dirty && form.email.$invalid">
+          <span ng-show = "form.email.$error.required">Email is required</span> 
+          <span ng-show = "form.email.$error.email">Invalid email address.</span>      
+        </span><br> -->
+        <div class="list-group-item">
+          Country
+          <select name="singleSelect" id="singleSelect" ng-model="country">
+          <option value="" selected>-- Select --</option> 
+          <option value="{{item}}" ng-repeat="item in countries">{{item}}</option>
+          <!--<option value="USA">USA</option>
+          <option value="INDIA">INDIA</option>-->
+          </select>
+        </div><br>
+        <div class="list-group-item">
+          <input type="text" placeholder="Zip Code" class="form-control no-border" ng-model="zipCode"> 
+        </div><br>
+        <input type="checkbox" ng-model="terms" ng-true-value="'true'" ng-false-value="'false'" name="terms" required>
+        *I agree to the Terms and Conditions
+        <br><span style = "color:red" ng-show = "form.terms.$dirty">
+          <span ng-show = "form.terms.$error.required">Accept Terms and Conditions</span>      
+        </span><br> 
+      </div>
+      <!--<button type="submit" ng-click="customerRegister()" ng-disabled='form.$invalid'>Submit</button> <button type="submit" ng-click="cancel()" ng-disabled='form.$invalid'>Cancel</button> -->
+      <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="customerRegister()" ng-disabled='form.$invalid'>Save</button>
+      <div class="text-center m-t m-b"><a href="#/login">Back to Login</a></div>
+      <div class="line line-dashed"></div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+    
+  

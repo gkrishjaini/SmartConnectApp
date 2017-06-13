@@ -1,0 +1,63 @@
+
+<div class="navbar-brand block m-t">Customer Scheduler</div>
+
+<div class="wrapper-md">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Customer Details</div>
+        <div class="panel-body">
+          <form role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Customer Name" class="form-control" ng-model="customerName" name="customerName" required>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Area Code" class="form-control" ng-model="areaCode" name="areaCode" required>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Mobile Number" class="form-control" ng-model="mobileNumber" name="mobileNumber" required>
+            </div>
+            <div class="form-group">
+             <input type="text" placeholder="Zip Code" class="form-control" ng-model="zipCode" name="zipCode" required>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">Service Provider Details</div>
+        <div class="panel-body">
+          <form role="form">
+            <div class="form-group">
+               <input type="text" placeholder="Service Provider Name" class="form-control" ng-model="serviceProviderName" name="serviceProviderName" required>
+            </div>
+            <div class="form-group">
+             <input type="text" placeholder="SP Unique ID" class="form-control" ng-model="spUniqueId" name="spUniqueId" required>
+            </div>
+            <div class="form-group">
+             <input type="text" placeholder="Address" class="form-control" ng-model="address" name="address" required>           
+            </div>
+           <div class="form-group">
+             <input type="text" placeholder="Area Name" class="form-control" ng-model="areaName" name="areaName" required>
+           </div>
+           <div class="form-group">
+             <input type="text" placeholder="City" class="form-control" ng-model="city" name="city" required>
+           </div>
+           <div class="form-group">  
+             <input type="text" placeholder="State" class="form-control" ng-model="state" name="state" required>
+           </div>
+           <div class="form-group">
+             <input type="text" placeholder="Postal Code" class="form-control" ng-model="postalCode" name="postalCode" required>
+           </div>
+          </form>
+        </div>
+      </div>
+    </div>
+     <div class="col-sm-4 col-sm-offset-2">
+    <button type="submit" ng-click="customerScheduler()" ng-disabled='form.$invalid'>Submit</button> <button type="submit" ng-click="cancel()" ng-disabled='form.$invalid'>Modify / Cancel</button> <button type="submit" ng-click="cancel()" ng-disabled='form.$invalid'>Appointment Selection</button>  
+     </div>
+ 
+  </div>
+
+ 

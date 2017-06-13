@@ -1,0 +1,3 @@
+smartApp.controller('customerSchedulerCtrl', function(){
+   
+});

@@ -1,0 +1,27 @@
+<div class="container w-xxl w-auto-xs">
+  <div class="navbar-brand block m-t"></div>
+  <div class="m-b-lg">
+    <form name="form" class="form-validation">
+      <div class="text-danger wrapper text-center" ng-show="authError">
+      </div>
+      <div class="list-group list-group-sm">
+        <div class="list-group">
+          <a href="" class="list-group-item active">
+          <h4 class="list-group-item-heading">Closed Appointment</h4>
+          </a>
+          <div ng-show="!previousAppointmentList.length" class="alert alert-info ng-binding">Sorry, No Closed Appointment to Show.</div>
+          <div class="list-group-item" ng-repeat="item in previousAppointmentList | orderBy:'-appointmentTime' | orderBy:'-appointmentDate'">
+          <p><b>Service Provider Name:</b> {{item.spDetails.firstName+ ' ' +item.spDetails.lastName}}</p>
+          <p><b>Address:</b> {{item.spDetails.addressLane1+ ' ' +item.spDetails.addressLane2}}</p>
+          <p><b>Appointment Date:</b> {{item.appointmentDate | date}}</p>
+          <p><b>Appointment Time:</b> {{item.appointmentTime}}</p>
+          <p>
+          <div ng-init="ratingItems[item.spDetails._id] = item.spDetails.rating"></div>
+          <div class="star-rating" data-ng-model="ratingItems[item.spDetails._id]" star-rating rating-value="ratingItems[item.spDetails._id]" data-max="5" on-rating-selected="rateFunction(rating,item.spDetails._id)" rating-disabled="false"></div>
+          </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
